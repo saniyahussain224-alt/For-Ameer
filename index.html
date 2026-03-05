@@ -3,20 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>For Ameer</title>
     <style>
         body {
-            background-color: orange;
-            color: pink;
+            background: linear-gradient(to right, orange, pink);
+            text-align: center;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
         }
+
         .heart {
-            color: pink;
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            animation: float 4s infinite;
         }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+        
+        /* Additional floating hearts styling */
+        .heart:nth-child(2) { left: 30%; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 60%; animation-delay: 2s; }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>This website features a beautiful orange and pink color scheme.</p>
-    <div class="heart">❤️</div>
+    <audio autoplay loop>
+        <source src="path_to_your_romantic_music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <h1>Welcome to Our Romantic Escape</h1>
+    <div id="timer"></div>
+
+    <script>
+        const countdownDate = new Date("June 3, 2026").getTime();
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s until June 3, 2026`;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("timer").innerHTML = "Countdown is over!";
+            }
+        }, 1000);
+
+        // Create floating hearts
+        for (let i = 0; i < 50; i++) {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            document.body.appendChild(heart);
+        }
+    </script>
 </body>
 </html>
