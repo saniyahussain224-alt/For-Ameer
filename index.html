@@ -3,108 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Romantic Website</title>
+    <title>Countdown Timer</title>
     <style>
         body {
-            background: linear-gradient(135deg, orange, pink);
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, orange, pink);
+            font-family: Arial, sans-serif;
             overflow: hidden;
-        }
-        /* Glassmorphism effect */
-        .glass {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-        }
-        h1 {
-            text-align: center;
             color: white;
         }
         #countdown {
-            font-size: 2em;
-            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 48px;
             text-align: center;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: float 6s infinite;
+        }
+        @keyframes float {
+            0% {transform: translateY(0);}
+            50% {transform: translateY(-30px);}
+            100% {transform: translateY(0);}
         }
         .gallery {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 20px;
         }
         .gallery img {
             width: 100px;
             height: 100px;
             margin: 10px;
             border-radius: 10px;
-            transition: transform 0.3s;
-        }
-        .gallery img:hover {
-            transform: scale(1.1);
-        }
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            background-color: pink;
-            color: white;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background-color: orange;
-        }
-        /* Floating hearts animation */
-        @keyframes float {
-            0%   { transform: translateY(0); }
-            50%  { transform: translateY(-20px); }
-            100% { transform: translateY(0); }
-        }
-        .heart {
-            position: absolute;
-            opacity: 0.5;
-            animation: float 3s infinite;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
         }
     </style>
 </head>
 <body>
-    <div class="glass">
-        <h1>Welcome to the Romantic Website</h1>
-        <div id="countdown"></div>
-        <div class="message">
-            <h2>Your special message here!</h2>
-        </div>
-        <div class="gallery">
-            <img src="image1.jpg" alt="Gallery Image 1">
-            <img src="image2.jpg" alt="Gallery Image 2">
-            <img src="image3.jpg" alt="Gallery Image 3">
-            <img src="image4.jpg" alt="Gallery Image 4">
-        </div>
-        <button>Click me!</button>
+
+    <div id="countdown"></div>
+    
+    <div class="gallery">
+        <!-- Replace with Base64 encoded images -->
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..." alt="Image 1">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..." alt="Image 2">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..." alt="Image 3">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA..." alt="Image 4">
     </div>
-    <div class="heart" style="top: 20%; left: 30%;"><img src="heart.png" width="50" alt="Heart"></div>
-    <div class="heart" style="top: 50%; left: 60%;"><img src="heart.png" width="30" alt="Heart"></div>
-    <div class="heart" style="top: 80%; left: 20%;"><img src="heart.png" width="40" alt="Heart"></div>
+    
+    <div class="heart" style="left: 10%; top: 20%;">❤️</div>
+    <div class="heart" style="left: 20%; top: 30%;">❤️</div>
+    <div class="heart" style="left: 30%; top: 10%;">❤️</div>
+
     <script>
         // Countdown Timer
-        const countdownDate = new Date('June 3, 2026 00:00:00').getTime();
-        const countdownFunction = setInterval(function() {
+        const countdownDate = new Date("June 3, 2026 00:00:00").getTime();
+        const countdownFunction = setInterval(() => {
             const now = new Date().getTime();
             const distance = countdownDate - now;
+
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
+
+            document.getElementById("countdown").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
             if (distance < 0) {
                 clearInterval(countdownFunction);
-                document.getElementById('countdown').innerHTML = 'EXPIRED';
+                document.getElementById("countdown").innerHTML = "Countdown Finished";
             }
         }, 1000);
     </script>
+
 </body>
 </html>
