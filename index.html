@@ -3,83 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Romantic Website</title>
+    <title>My Website</title>
     <style>
         body {
-            background-color: pink;
-            color: red;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            position: relative;
+            background-color: orange;
+            color: pink;
         }
         .heart {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background-color: red;
-            animation: float 5s infinite;
-            border-radius: 50%;
-        }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
-            100% { transform: translateY(0); }
-        }
-        #timer {
-            font-size: 24px;
-            margin: 20px;
-        }
-        #message {
-            margin: 20px;
-        }
-        #gallery {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        #gallery img {
-            max-width: 100px;
-            margin: 5px;
-            border-radius: 10px;
+            color: pink;
         }
     </style>
 </head>
 <body>
-
-    <div id="timer"></div>
-    <div id="message">Happy Moments Together!</div>
-    <div id="gallery">
-        <img src="image1.jpg" alt="Gallery Image 1">
-        <img src="image2.jpg" alt="Gallery Image 2">
-        <img src="image3.jpg" alt="Gallery Image 3">
-    </div>
-
-    <script>
-        const targetDate = new Date('2026-06-03T00:00:00');
-        const timerElement = document.getElementById('timer');
-
-        function updateTimer() {
-            const now = new Date();
-            const timeLeft = targetDate - now;
-
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-            timerElement.innerHTML = `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
-        }
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
-
-        // Create floating hearts
-        for (let i = 0; i < 10; i++) {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.top = Math.random() * 100 + 'vh';
-            document.body.appendChild(heart);
-        }
-    </script>
+    <h1>Welcome to My Website</h1>
+    <p>This website features a beautiful orange and pink color scheme.</p>
+    <div class="heart">❤️</div>
 </body>
 </html>
