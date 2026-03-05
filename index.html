@@ -3,68 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Ameer</title>
+    <title>Romantic Website</title>
     <style>
         body {
-            background: linear-gradient(to right, orange, pink);
-            text-align: center;
-            color: white;
+            background: linear-gradient(135deg, orange, pink);
             font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
-
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: red;
-            animation: float 4s infinite;
+        /* Glassmorphism effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            margin: 20px;
         }
-
+        h1 {
+            text-align: center;
+            color: white;
+        }
+        #countdown {
+            font-size: 2em;
+            color: white;
+            text-align: center;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .gallery img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: pink;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: orange;
+        }
+        /* Floating hearts animation */
         @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            0%   { transform: translateY(0); }
+            50%  { transform: translateY(-20px); }
             100% { transform: translateY(0); }
         }
-        
-        /* Additional floating hearts styling */
-        .heart:nth-child(2) { left: 30%; animation-delay: 1s; }
-        .heart:nth-child(3) { left: 60%; animation-delay: 2s; }
+        .heart {
+            position: absolute;
+            opacity: 0.5;
+            animation: float 3s infinite;
+        }
     </style>
 </head>
 <body>
-    <audio autoplay loop>
-        <source src="path_to_your_romantic_music.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <h1>Welcome to Our Romantic Escape</h1>
-    <div id="timer"></div>
-
+    <div class="glass">
+        <h1>Welcome to the Romantic Website</h1>
+        <div id="countdown"></div>
+        <div class="message">
+            <h2>Your special message here!</h2>
+        </div>
+        <div class="gallery">
+            <img src="image1.jpg" alt="Gallery Image 1">
+            <img src="image2.jpg" alt="Gallery Image 2">
+            <img src="image3.jpg" alt="Gallery Image 3">
+            <img src="image4.jpg" alt="Gallery Image 4">
+        </div>
+        <button>Click me!</button>
+    </div>
+    <div class="heart" style="top: 20%; left: 30%;"><img src="heart.png" width="50" alt="Heart"></div>
+    <div class="heart" style="top: 50%; left: 60%;"><img src="heart.png" width="30" alt="Heart"></div>
+    <div class="heart" style="top: 80%; left: 20%;"><img src="heart.png" width="40" alt="Heart"></div>
     <script>
-        const countdownDate = new Date("June 3, 2026").getTime();
-        const timer = setInterval(function() {
+        // Countdown Timer
+        const countdownDate = new Date('June 3, 2026 00:00:00').getTime();
+        const countdownFunction = setInterval(function() {
             const now = new Date().getTime();
             const distance = countdownDate - now;
-
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("timer").innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s until June 3, 2026`;
-
+            document.getElementById('countdown').innerHTML = days + 'd ' + hours + 'h ' + minutes + 'm ' + seconds + 's ';
             if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("timer").innerHTML = "Countdown is over!";
+                clearInterval(countdownFunction);
+                document.getElementById('countdown').innerHTML = 'EXPIRED';
             }
         }, 1000);
-
-        // Create floating hearts
-        for (let i = 0; i < 50; i++) {
-            let heart = document.createElement("div");
-            heart.className = "heart";
-            document.body.appendChild(heart);
-        }
     </script>
 </body>
 </html>
